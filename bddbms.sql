@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2022 at 01:43 PM
+-- Generation Time: Dec 09, 2022 at 03:51 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -106,6 +106,13 @@ CREATE TABLE `see_ownuser_info` (
   `Location` varchar(50) NOT NULL,
   `Health_Problem` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `see_ownuser_info`
+--
+
+INSERT INTO `see_ownuser_info` (`ID`, `Name`, `Age`, `Blood_Type`, `Phone`, `E_Mail`, `Last_Donation`, `Preferred_Date`, `Location`, `Health_Problem`) VALUES
+(2200100, 'RAIYAN', 0, '', '', '', 0, '0000-00-00', '', '');
 
 -- --------------------------------------------------------
 
