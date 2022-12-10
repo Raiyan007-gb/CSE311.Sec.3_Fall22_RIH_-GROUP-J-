@@ -8,7 +8,7 @@ define('DB_NAME', 'bddbms');
  
 /*connect to MySQL database */
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-echo ("Connection Established");
+echo ("connection Established");
  
 // Check connection
 if($link == false){

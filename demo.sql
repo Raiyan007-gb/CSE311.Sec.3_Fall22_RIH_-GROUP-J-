@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2022 at 08:16 AM
+-- Generation Time: Dec 09, 2022 at 11:01 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bddbms`
+-- Database: `demo`
 --
 
 -- --------------------------------------------------------
@@ -86,9 +86,7 @@ INSERT INTO `register_user_info` (`User_ID`, `Name`, `Username`, `Password`, `Ag
 (2200117, 'Raiyan Ahmed', 'raiyan2025@gmail.comj', '$2y$10$xDKzcwWYBRZ98NX4b4HtwOMnWPJieDwZW2g7tZtypn3LVjmlCy6f6', 88, '01536129173', 'raiyan.ahmed05@northsouth.edu', 'ganderia sharafat ganj lane ganderia dhaka', 56, 'ACCEPTOR', '2022-12-12', 'AB+', 'there is no health problem with me there is no health problem with me there is no health problem with methere is no health problem with me '),
 (2200118, 'Raiyan Ahmed', 'raiyan2012s', '$2y$10$hw7QgMU9PgWJTYbs8XWaR.tABrNWvIsJor0kBDKvL1D8uyMCjEGku', 22, '01536129173', 'raiyan.ahmed05@northsouth.edu', 'ganderia sharafat ganj lane ganderia dhaka', 56, 'ACCEPTOR', '0000-00-00', 'AB+', 'there is no health problem with me there is no health problem with me there is no health problem with methere is no health problem with me '),
 (2200119, 'Raiyan Ahmed', 'raiyan2012sh', '$2y$10$aTCz.yyUoRHesVFsoHIux.1ay59.wCjUmZ7VbEAPTinSL4ad5RQUq', 22, '01536129173', 'raiyan.ahmed05@northsouth.edu', 'ganderia sharafat ganj lane ganderia dhaka', 56, 'ACCEPTOR', '2022-12-11', 'B+', 'there is no health problem with me there is no health problem with me there is no health problem with methere is no health problem with me '),
-(2200120, 'Raiyan Ahmed', 'admin', '$2y$10$seX1tAOHA7lnMl4a628DEeSk7NXt4IL21FH9i9HEWxizsle.GOawe', 23, '01536129173', 'raiyan.ahmed05@northsouth.edu', 'ganderia sharafat ganj lane ganderia dhaka', 56, 'ACCEPTOR', '2022-12-28', 'O-', 'there is no health problem with me there is no health problem with me there is no health problem with methere is no health problem with me '),
-(2200121, 'Raiyan Ahmed', 'adminadminadmin', '$2y$10$1A18sJGFT7zMnG36fB4ag.u21qtNwe9n2nTxFRItc/Rspe9oqJZvi', 99, '01536129173', 'raiyan.ahmed05@northsouth.edu', 'ganderia sharafat ganj lane ganderia dhaka', 34, 'ACCEPTOR', '0000-00-00', 'AB+', 'there is no health problem with me there is no health problem with me there is no health problem with methere is no health problem with me '),
-(2200122, 'Raiyan Ahmed', 'raiyan2025@gmail.com2', '$2y$10$aO9KYfTPiWc19scb2i7Uxu7nGQD6Wj4wxTytu92Gkq78Y2VrIExbG', 99, '01536129173', 'raiyan.ahmed05@northsouth.edu', 'ganderia sharafat ganj lane ganderia dhaka', 88, 'DONOR', '2022-12-12', 'A-', 'there is no health problem with me there is no health problem with me there is no health problem with methere is no health problem with me ');
+(2200120, 'Raiyan Ahmed', 'admin', '$2y$10$seX1tAOHA7lnMl4a628DEeSk7NXt4IL21FH9i9HEWxizsle.GOawe', 23, '01536129173', 'raiyan.ahmed05@northsouth.edu', 'ganderia sharafat ganj lane ganderia dhaka', 56, 'ACCEPTOR', '2022-12-28', 'O-', 'there is no health problem with me there is no health problem with me there is no health problem with methere is no health problem with me ');
 
 -- --------------------------------------------------------
 
@@ -168,7 +166,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `register_user_info`
 --
 ALTER TABLE `register_user_info`
-  MODIFY `User_ID` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2200123;
+  MODIFY `User_ID` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2200121;
 
 --
 -- AUTO_INCREMENT for table `users`
