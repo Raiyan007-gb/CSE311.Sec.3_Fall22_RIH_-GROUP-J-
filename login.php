@@ -96,7 +96,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
         body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
+        .wrapper{ width: 350px; 
+            margin-top: 250px;
+            margin-bottom: 100px;
+            margin-right: 200px;
+            margin-left: 845px;padding: 20px; }
     </style>
 </head>
 <body>

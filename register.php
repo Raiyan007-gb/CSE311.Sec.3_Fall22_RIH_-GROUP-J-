@@ -42,6 +42,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Close statement
             mysqli_stmt_close($stmt);
         }
+        
     }
     
     // Validate password
@@ -62,20 +63,76 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $confirm_password_err = "Password did not match.";
         }
     }
-    $Name= ($_POST["Name"]);
-    $Age= trim($_POST["Age"]);
-    $Phone= trim($_POST["Phone"]);
-    $E_mail= trim($_POST["E_mail"]);
-    $Location= ($_POST["Location"]);
-    $Last_Donation= trim($_POST["Last_Donation"]);
-    $UserType= trim($_POST["UserType"]);
-    $Preferred_Date= ($_POST["Preferred_Date"]);
+    if(empty(trim($_POST["Name"]))){
+        $Name_err = "Enter your Name.";     
+    } elseif(strlen(trim($_POST["Name"])) < 1){
+        $Name_err = "Name must be characters.";
+    } else{
+        $Name = trim($_POST["Name"]);
+    }
+    
+    // Validate confirm password
+    if(empty(trim($_POST["E_mail"]))){
+        $E_mail_err = "Please enter your E_mail.";
+    } else{
+        $E_mail = trim($_POST["E_mail"]);
+    }
+
+    if(empty(trim($_POST["Age"]))){
+        $Age_err = "Enter your Age.";     
+    }elseif($_POST["Age"] < 18){
+        $Age_err = "You Must Be At Least 18 Years Old";
+    }else{
+        $Age = trim($_POST["Age"]);
+    }
+
+    if(empty(trim($_POST["Phone"]))){
+        $Phone_err = "Enter your Phone number.";     
+    }elseif(is_numeric(trim($_POST["Phone"])) && strlen(trim($_POST["Phone"])) ==11){
+        $Phone = trim($_POST["Phone"]);
+    }else{
+        $Phone_err = "You must provide a valid Phone number.";
+    }
+
+    if(empty(trim($_POST["Location"]))){
+        $Location_err = "Enter your Location.";     
+    }else{
+        $Location = trim($_POST["Location"]);
+    }
+
+    if(empty(trim($_POST["Last_Donation"]))){
+        $Last_Donation_err = "Enter your Last Donation.";     
+    }elseif(is_numeric(trim($_POST["Last_Donation"]))){
+        $Last_Donation = trim($_POST["Last_Donation"]);
+    }else{
+        $Last_Donation_err = "Enter your Last Donation in Days.";
+    }
+
+    if(empty(trim($_POST["UserType"]))){
+        $UserType_err = "Enter your UserType.";     
+    }else{
+        $UserType = trim($_POST["UserType"]);
+    }
+
+    if(empty(trim($_POST["Preferred_Date"]))){
+        $Preferred_Date_err = "Enter your Preferred_Date.";     
+    }else{
+        $Preferred_Date = trim($_POST["Preferred_Date"]);
+    }
+
+    if(empty(trim($_POST["Health_Problem"]))){
+        $Health_Problem_err = "Enter your Health Problem.";     
+    }else{
+        $Health_Problem = trim($_POST["Health_Problem"]);
+    }
+    
     $Blood_Type= trim($_POST["Blood_Type"]);
-    $Health_Problem= ($_POST["Health_Problem"]);
+    
     
     
     // Check input errors before inserting in database
-    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
+    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)&& empty($Name_err)&& empty($E_mail_err)&& empty($Age_err)&& empty($Phone_err)&& empty($Location_err)&& empty($Last_Donation_err)
+    && empty($UserType_err)&& empty($Preferred_Date_err)&& empty($Health_Problem_err)){
         
         // Prepare an insert statement
         $sql = "INSERT INTO register_user_info (Username, Password,Name,Age,Phone,E_mail

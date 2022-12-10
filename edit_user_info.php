@@ -84,7 +84,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $Health_Problem = trim($_POST["Health_Problem"]);
     }
     // Check input errors before updating the database
-    if(empty($Name_err) && empty($E_mail_err) && empty($Age_err) && empty($Phone_err)){
+    if(empty($Name_err) && empty($E_mail_err) && empty($Age_err) && empty($Phone_err)&& empty($Location_err)&& empty($Last_Donation_err)
+    && empty($UserType_err)&& empty($Preferred_Date_err)&& empty($Health_Problem_err)){
         // Prepare an update statement
         $sql = "UPDATE register_user_info SET Name = ?,E_Mail= ?,Age =? ,Phone =?,Location =?,
         Last_Donation=?,UserType=?,Preferred_Date=?,Health_Problem=? WHERE User_ID = ?";
