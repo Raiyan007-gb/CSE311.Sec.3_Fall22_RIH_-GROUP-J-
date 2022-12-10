@@ -71,7 +71,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $Name = trim($_POST["Name"]);
     }
     
-    // Validate confirm password
+    // Validate Email
     if(empty(trim($_POST["E_mail"]))){
         $E_mail_err = "Please enter your E_mail.";
     } else{

@@ -20,7 +20,7 @@ $Name_err = $E_mail_err = $Age_err = $Phone_err = $Location_err
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
-    // Validate new password
+    // Validate new name
     if(empty(trim($_POST["Name"]))){
         $Name_err = "Enter your Name.";     
     } elseif(strlen(trim($_POST["Name"])) < 1){
@@ -29,7 +29,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $Name = trim($_POST["Name"]);
     }
     
-    // Validate confirm password
+    // Validate Validate new email
     if(empty(trim($_POST["E_mail"]))){
         $E_mail_err = "Please enter your E_mail.";
     } else{
