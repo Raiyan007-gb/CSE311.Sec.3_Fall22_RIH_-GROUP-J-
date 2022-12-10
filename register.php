@@ -3,9 +3,9 @@
 require_once "connection.php";
  
 // Define variables and initialize with null string
-$username = $password = $confirm_password = $Name = $Age = $Phone = $E_Mail = $Location = $Last_Donation = $UserType = $Preferred_Date
+$username = $password = $confirm_password = $Name = $Age = $Phone = $E_mail = $Location = $Last_Donation = $UserType = $Preferred_Date
 = $Blood_Type =$Health_Problem = "";
-$username_err = $password_err = $confirm_password_err = $Name_err = $Age_err = $Phone_err = $E_Mail_err = $Location_err 
+$username_err = $password_err = $confirm_password_err = $Name_err = $Age_err = $Phone_err = $E_mail_err = $Location_err 
 = $Last_Donation_err = $UserType_err = $Preferred_Date_err = $Blood_Type_err = $Health_Problem_err = "";
  
 // Processing form data when form is submitted
@@ -65,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $Name= ($_POST["Name"]);
     $Age= trim($_POST["Age"]);
     $Phone= trim($_POST["Phone"]);
-    $E_Mail= trim($_POST["E-Mail"]);
+    $E_mail= trim($_POST["E_mail"]);
     $Location= ($_POST["Location"]);
     $Last_Donation= trim($_POST["Last_Donation"]);
     $UserType= trim($_POST["UserType"]);
@@ -85,7 +85,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "ssssssssssss", $param_username, $param_password,$Name,$Age,
-            $Phone,$E_Mail,$Location,$Last_Donation,$UserType,$Preferred_Date,$Blood_Type,
+            $Phone,$E_mail,$Location,$Last_Donation,$UserType,$Preferred_Date,$Blood_Type,
             $Health_Problem);
             
             // Set parameters
@@ -160,10 +160,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <span class="help-block"><?php echo $Phone_err; ?></span>
             </div>  
 
-            <div class="form-group <?php echo (!empty($E_Mail_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group <?php echo (!empty($E_mail_err)) ? 'has-error' : ''; ?>">
                 <label>E-Mail</label>
-                <input type="text" name="E-Mail" class="form-control" value="<?php echo $E_Mail; ?>">
-                <span class="help-block"><?php echo $E_Mail_err; ?></span>
+                <input type="text" name="E_mail" class="form-control" value="<?php echo $E_mail; ?>">
+                <span class="help-block"><?php echo $E_mail_err; ?></span>
             </div>  
 
             <div class="form-group <?php echo (!empty($Location_err)) ? 'has-error' : ''; ?>">
