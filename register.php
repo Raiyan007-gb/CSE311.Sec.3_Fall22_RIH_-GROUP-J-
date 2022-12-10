@@ -3,8 +3,8 @@
 require_once "connection.php";
  
 // Define variables and initialize with null string
-$username = $password = $confirm_password = $Name = $Age = $Phone = $E_mail = $Location = $Last_Donation = $UserType = $Preferred_Date
-= $Blood_Type =$Health_Problem = "";
+$username = $password = $confirm_password = $Name = $Age = $Phone = $E_mail = $Location 
+= $Last_Donation =$UserType = $Preferred_Date= $Blood_Type =$Health_Problem = "";
 $username_err = $password_err = $confirm_password_err = $Name_err = $Age_err = $Phone_err = $E_mail_err = $Location_err 
 = $Last_Donation_err = $UserType_err = $Preferred_Date_err = $Blood_Type_err = $Health_Problem_err = "";
  
@@ -162,7 +162,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             <div class="form-group <?php echo (!empty($E_mail_err)) ? 'has-error' : ''; ?>">
                 <label>E-Mail</label>
-                <input type="text" name="E_mail" class="form-control" value="<?php echo $E_mail; ?>">
+                <input type="email" name="E_mail" class="form-control" value="<?php echo $E_mail; ?>">
                 <span class="help-block"><?php echo $E_mail_err; ?></span>
             </div>  
 
@@ -189,9 +189,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             <div class="form-group <?php echo (!empty($Preferred_Date_err)) ? 'has-error' : ''; ?>">
             <label>
-                 Preferred_Date:
+                 Preferred Date:
                  <input type="date" name="Preferred_Date" 
-        placeholder="yyyy-mm-dd" >
+                  placeholder="yyyy-mm-dd" >
                  <span class="validity"></span>
             </label>
                 
