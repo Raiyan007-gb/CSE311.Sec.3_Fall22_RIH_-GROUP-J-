@@ -18,18 +18,19 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
      </title>
  <body>
       <div>
-            <table align="center" border="1px" style = "width:900px; line-height:40px:">
+            <table align="center" border="1px" style = "width:1000px; line-height:40px:">
             <tr>
-               <th colspan="10">See Owner Info</h></th>
+               <th colspan="11">See Owner Info</h></th>
             </tr>
             <t>
+            <th> ID </th>
             <th> Name</th>
             <th> Blood Type</th>
             <th> Age</th>
             <th> Location</th>
             <th> Phone</th>
             <th> E-mail</th>
-            <th> Last_Donation</th>
+            <th> Last Donation</th>
             <th> UserType</th>
             <th> Preferred Date</th>
             <th> Health Problems</th>
@@ -37,6 +38,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <?php 
                    while($row = mysqli_fetch_assoc($get_data)){
                     echo '<tr>
+                    <td> '.$row['User_ID'].'</td>
                     <td> '.$row['Name'].'</td>
                     <td> '.$row['Blood_Type'].'</td>
                     <td> '.$row['Age'].'</td>
