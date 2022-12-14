@@ -170,7 +170,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <span class="help-block"><?php echo $Location_err; ?></span>
             </div>
             <div class="form-group <?php echo (!empty($Last_Donation_err)) ? 'has-error' : ''; ?>">
-                <label>Last Donation</label>
+                <label>How many days from Last Donation?</label>
                 <input type="Text" name="Last_Donation" class="form-control" value="<?php echo $Last_Donation; ?>">
                 <span class="help-block"><?php echo $Last_Donation_err; ?></span>
             </div>

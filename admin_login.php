@@ -4,7 +4,7 @@ session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-  header("location: welcome.php");
+  header("location: welcome_admin.php");
   exit;
 }
  
@@ -12,17 +12,17 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 require_once "connection.php";
  
 // Define variables and initialize with empty values
-$username = $password = "";
-$username_err = $password_err = "";
+$Name = $password = "";
+$Name_err = $password_err = "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Check if username is empty
-    if(empty(trim($_POST["username"]))){
-        $username_err = "Please enter username.";
+    if(empty(trim($_POST["Name"]))){
+        $Name_err = "Please enter Name.";
     } else{
-        $username = trim($_POST["username"]);
+        $Name = trim($_POST["Name"]);
     }
     
     // Check if password is empty
@@ -33,16 +33,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Validate credentials
-    if(empty($username_err) && empty($password_err)){
+    if(empty($Name_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT User_ID, Username, password FROM register_user_info WHERE Username = ?";
+        $sql = "SELECT Admin_ID, Name, password FROM admin_own_info WHERE Name = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
+            mysqli_stmt_bind_param($stmt, "s", $param_Name);
             
             // Set parameters
-            $param_username = $username;
+            $param_Name = $Name;
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
@@ -52,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Check if username exists, if yes then verify password
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $User_ID, $username, $hashed_password);
+                    mysqli_stmt_bind_result($stmt, $Admin_ID, $Name, $hashed_password);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
@@ -60,11 +60,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
-                            $_SESSION["User_ID"] = $User_ID;
-                            $_SESSION["username"] = $username;                            
+                            $_SESSION["Admin_ID"] = $Admin_ID;
+                            $_SESSION["Name"] = $Name;                            
                             
                             // Redirect user to welcome page
-                            header("location: welcome.php");
+                            header("location: welcome_admin.php");
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
@@ -72,7 +72,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     }
                 } else{
                     // Display an error message if username doesn't exist
-                    $username_err = "No account found with that username.";
+                    $Name_err = "No account found with that username.";
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -102,13 +102,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
     <div class="wrapper">
-        <h2>USER Login</h2>
+        <h2>ADMIN</h2>
         <p>Please fill in your credentials to login.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                <label>Username</label>
-                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
-                <span class="help-block"><?php echo $username_err; ?></span>
+            <div class="form-group <?php echo (!empty($Name_err)) ? 'has-error' : ''; ?>">
+                <label>FNAME</label>
+                <input type="text" name="Name" class="form-control" value="<?php echo $Name; ?>">
+                <span class="help-block"><?php echo $Name_err; ?></span>
             </div>    
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                 <label>Password</label>
@@ -118,8 +118,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
-            <p>Login as ADMIN <a href="admin_login.php">Login Now!!</a>.</p>
+            <p>Don't have an account? <a href="register_admin.php">Sign up now</a>.</p>
+            <p>Login as User <a href="login.php">Go to Login page</a>.</p>
         </form>
     </div>    
 </body>

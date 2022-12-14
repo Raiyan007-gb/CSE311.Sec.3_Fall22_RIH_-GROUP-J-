@@ -8,10 +8,21 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
     require "connection.php";
     $sql = "SELECT * FROM register_user_info WHERE User_ID =($_SESSION[User_ID])";
-    $get_data = mysqli_query($link,$sql);
-    if(mysqli_num_rows($get_data)>0){
-        echo '<table>
-          <tr>
+    $get_data = mysqli_query($link,$sql);  
+?>
+
+<!DOCTYPE html>
+<html>
+     <title>
+          <head> USER Info </head>
+     </title>
+ <body>
+      <div>
+            <table align="center" border="1px" style = "width:900px; line-height:40px:">
+            <tr>
+               <th colspan="10">See Owner Info</h></th>
+            </tr>
+            <t>
             <th> Name</th>
             <th> Blood Type</th>
             <th> Age</th>
@@ -22,26 +33,26 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <th> UserType</th>
             <th> Preferred Date</th>
             <th> Health Problems</th>
-          </tr>';
-      while($row = mysqli_fetch_assoc($get_data)){
-        echo '<tr>
-        <td> '.$row['Name'].'</td>
-        <td> '.$row['Blood_Type'].'</td>
-        <td> '.$row['Age'].'</td>
-        <td> '.$row['Location'].'</td>
-        <td> '.$row['Phone'].'</td>
-        <td> '.$row['E_mail'].'</td>
-        <td> '.$row['Last_Donation'].'</td>
-        <td> '.$row['UserType'].'</td>
-        <td> '.$row['Preferred_Date'].'</td>
-        <td> '.$row['Health_Problem'].'</td>
-        </tr>';
-      }
-      echo '</table>';
-    }else{
-        echo "No records found!";
-    }
-   
-?>
+            </t>
+            <?php 
+                   while($row = mysqli_fetch_assoc($get_data)){
+                    echo '<tr>
+                    <td> '.$row['Name'].'</td>
+                    <td> '.$row['Blood_Type'].'</td>
+                    <td> '.$row['Age'].'</td>
+                    <td> '.$row['Location'].'</td>
+                    <td> '.$row['Phone'].'</td>
+                    <td> '.$row['E_mail'].'</td>
+                    <td> '.$row['Last_Donation'].'</td>
+                    <td> '.$row['UserType'].'</td>
+                    <td> '.$row['Preferred_Date'].'</td>
+                    <td> '.$row['Health_Problem'].'</td>
+                    </tr>';
+                  }
+            ?>
+            </table> 
+      </div>
+ </body>
+</html>
 
     

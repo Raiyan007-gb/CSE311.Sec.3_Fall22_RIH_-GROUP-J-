@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2022 at 08:16 AM
+-- Generation Time: Dec 09, 2022 at 11:01 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -74,7 +74,7 @@ CREATE TABLE `register_user_info` (
   `Last_Donation` int(4) NOT NULL,
   `UserType` enum('ACCEPTOR','DONOR') NOT NULL,
   `Preferred_Date` date NOT NULL,
-  `Blood_Type` enum('AB+','AB-','A+','A-','B+','B-','O+','O-') DEFAULT NULL,
+  `Blood_Type` varchar(5) NOT NULL,
   `Health_Problem` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -83,12 +83,10 @@ CREATE TABLE `register_user_info` (
 --
 
 INSERT INTO `register_user_info` (`User_ID`, `Name`, `Username`, `Password`, `Age`, `Phone`, `E_mail`, `Location`, `Last_Donation`, `UserType`, `Preferred_Date`, `Blood_Type`, `Health_Problem`) VALUES
-(2200117, 'Raiyan Ahmed', 'raiyan2025@gmail.comj', '$2y$10$xDKzcwWYBRZ98NX4b4HtwOMnWPJieDwZW2g7tZtypn3LVjmlCy6f6', 88, '01536129173', 'raiyan.ahmed05@northsouth.edu', 'ganderia sharafat ganj lane ganderia dhaka', 56, 'ACCEPTOR', '2022-12-12', 'AB+', 'there is no health problem with me there is no health problem with me there is no health problem with methere is no health problem with me '),
-(2200118, 'Raiyan Ahmed', 'raiyan2012s', '$2y$10$hw7QgMU9PgWJTYbs8XWaR.tABrNWvIsJor0kBDKvL1D8uyMCjEGku', 22, '01536129173', 'raiyan.ahmed05@northsouth.edu', 'ganderia sharafat ganj lane ganderia dhaka', 56, 'ACCEPTOR', '0000-00-00', 'AB+', 'there is no health problem with me there is no health problem with me there is no health problem with methere is no health problem with me '),
-(2200119, 'Raiyan Ahmed', 'raiyan2012sh', '$2y$10$aTCz.yyUoRHesVFsoHIux.1ay59.wCjUmZ7VbEAPTinSL4ad5RQUq', 22, '01536129173', 'raiyan.ahmed05@northsouth.edu', 'ganderia sharafat ganj lane ganderia dhaka', 56, 'ACCEPTOR', '2022-12-11', 'B+', 'there is no health problem with me there is no health problem with me there is no health problem with methere is no health problem with me '),
-(2200120, 'Raiyan Ahmed', 'admin', '$2y$10$seX1tAOHA7lnMl4a628DEeSk7NXt4IL21FH9i9HEWxizsle.GOawe', 23, '01536129173', 'raiyan.ahmed05@northsouth.edu', 'ganderia sharafat ganj lane ganderia dhaka', 56, 'ACCEPTOR', '2022-12-28', 'O-', 'there is no health problem with me there is no health problem with me there is no health problem with methere is no health problem with me '),
-(2200121, 'Raiyan Ahmed', 'adminadminadmin', '$2y$10$1A18sJGFT7zMnG36fB4ag.u21qtNwe9n2nTxFRItc/Rspe9oqJZvi', 99, '01536129173', 'raiyan.ahmed05@northsouth.edu', 'ganderia sharafat ganj lane ganderia dhaka', 34, 'ACCEPTOR', '0000-00-00', 'AB+', 'there is no health problem with me there is no health problem with me there is no health problem with methere is no health problem with me '),
-(2200122, 'Raiyan Ahmed', 'raiyan2025@gmail.com2', '$2y$10$aO9KYfTPiWc19scb2i7Uxu7nGQD6Wj4wxTytu92Gkq78Y2VrIExbG', 99, '01536129173', 'raiyan.ahmed05@northsouth.edu', 'ganderia sharafat ganj lane ganderia dhaka', 88, 'DONOR', '2022-12-12', 'A-', 'there is no health problem with me there is no health problem with me there is no health problem with methere is no health problem with me ');
+(2200100, '', 'raiyan2012', '$2y$10$b6tOqR6PgD77YrbeiFUI5OBUWuaXe/edwmG9g/JtKtItf0Xhwqn4q', 22, '01536129152', 'raiyN@GM.COM', 'ganderia,dhaka 1204', 54, 'ACCEPTOR', '2022-12-01', 'O+', 'no health issues ,i am mr. perfect'),
+(2200101, '', 'raiyan2012s', '$2y$10$b6tOqR6PgD77YrbeiFUI5OBUWuaXe/edwmG9g/JtKtItf0Xhwqn4q', 22, '01536129152', 'raiyN@GM.COM', 'ganderia,dhaka 1204', 54, 'ACCEPTOR', '2022-12-01', 'O+', 'no health issues ,i am mr. perfect'),
+(2200102, 'RAIYAN', 'raiyan2012ds', '$2y$10$b6tOqR6PgD77YrbeiFUI5OBUWuaXe/edwmG9g/JtKtItf0Xhwqn4q', 22, '01536129152', 'raiyN@GM.COM', 'ganderia,dhaka 1204', 54, 'ACCEPTOR', '2022-12-01', 'O+', 'no health issues ,i am mr. perfect'),
+(2200104, 'RAIYAN', 'raiyan2012dss', '$2y$10$b6tOqR6PgD77YrbeiFUI5OBUWuaXe/edwmG9g/JtKtItf0Xhwqn4q', 22, '01536129152', 'raiyN@GM.COM', 'ganderia,dhaka 1204', 54, 'ACCEPTOR', '2022-12-01', 'O+', 'no health issues ,i am mr. perfect');
 
 -- --------------------------------------------------------
 
@@ -109,18 +107,12 @@ CREATE TABLE `see_ownuser_info` (
   `Health_Problem` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `users`
+-- Dumping data for table `see_ownuser_info`
 --
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `created_at` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+INSERT INTO `see_ownuser_info` (`ID`, `Name`, `Age`, `Blood_Type`, `Phone`, `E_Mail`, `Last_Donation`, `Preferred_Date`, `Location`, `Health_Problem`) VALUES
+(2200100, 'RAIYAN', 0, '', '', '', 0, '0000-00-00', '', '');
 
 -- --------------------------------------------------------
 
@@ -154,13 +146,6 @@ ALTER TABLE `see_ownuser_info`
   ADD KEY `ID` (`ID`);
 
 --
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -168,13 +153,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `register_user_info`
 --
 ALTER TABLE `register_user_info`
-  MODIFY `User_ID` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2200123;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `User_ID` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2200105;
 
 --
 -- Constraints for dumped tables
