@@ -26,9 +26,87 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <p>
         <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
         <a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a>
-        <a href="edit_user_info.php" class="btn btn-warning">Edit User Information</a>
-        <a href="see_user_information.php" class="btn btn-warning">See Own Information</a>
+        <a href="edit_user_info.php" class="btn btn-warning">EDIT YOUR INFORMATION</a>
+        <a href="become_a_donor.php" class="btn btn-info">BE A DONOR</a>
+        <a href="see_user_information.php" class="btn btn-warning">SEE OWN INFORMATION</a>
+        <a href="delete_user_data_confirmation.php" class="btn btn-danger">Delete your Profile</a>
     </p>
+    <div class="center">
+                
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <style type="text/css">
+        body{ font: 14px sans-serif; text-align: center; }
+.dropbtn {
+  background-color: #ff0000;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #ff0000;}
+</style>
+</head>
+<body>
+    <label for="FIND's DONOR"></label>
+          <div class="dropdown">
+            <button class="dropbtn">FIND's DONOR</button>
+           <div class="dropdown-content">
+                <a href="AB+.php">AB+</a>
+                <a href="AB-.php">AB-</a>
+                <a href="A+.php">A+</a>
+                <a href="A-.php">A-</a>
+                <a href="B+.php">B+</a>
+                <a href="B-.php">B-</a>
+                <a href="O+.php">O+</a>
+                <a href="O-.php">O-</a>
+           </div>
+          </div>
     <div class="center">
 
     </div>

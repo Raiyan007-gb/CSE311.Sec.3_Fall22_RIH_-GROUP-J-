@@ -35,7 +35,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT User_ID, Username, password FROM register_user_info WHERE Username = ?";
+        $sql = "SELECT User_ID, Username,Name,Blood_Type,Age,Last_Donation,Location,UserType,
+        E_mail,Phone,Health_Problem, Password FROM register_user_info WHERE Username = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -52,7 +53,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Check if username exists, if yes then verify password
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $User_ID, $username, $hashed_password);
+                    mysqli_stmt_bind_result($stmt, $User_ID, $username,$Name,$Blood_Type,$Age,$Last_Donation,
+                    $Location,$UserType,$E_mail,$Phone,$Health_Problem,$hashed_password);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
@@ -62,7 +64,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["loggedin"] = true;
                             $_SESSION["User_ID"] = $User_ID;
                             $_SESSION["username"] = $username;                            
-                            
+                            $_SESSION["Name"] = $Name;  
+                            $_SESSION["Blood_Type"] = $Blood_Type; 
+                            $_SESSION["Age"] = $Age;   
+                            $_SESSION["Last_Donation"] = $Last_Donation;
+                            $_SESSION["Location"] = $Location;
+                            $_SESSION["UserType"] = $UserType;
+                            $_SESSION["E_mail"] = $E_mail;     
+                            $_SESSION["Phone"] = $Phone;
+                            $_SESSION["Health_Problem"] = $Health_Problem; 
                             // Redirect user to welcome page
                             header("location: welcome.php");
                         } else{

@@ -1,10 +1,10 @@
-<?php
+<?php 
 // Initialize the session
 session_start();
  
 // Check if the user is logged in, otherwise redirect to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+    header("location: welcome.php");
     exit;
 }
  
@@ -13,107 +13,37 @@ require_once "connection.php";
  
 // Define variables and initialize with empty values
 $Name = $E_mail = $Age = $Phone = $Location
-=$Last_Donation =$UserType = $Preferred_Date =$Health_Problem = "";
+=$Last_Donation =$UserType =$Health_Problem = $Blood_Type = "";
 $Name_err = $E_mail_err = $Age_err = $Phone_err = $Location_err
-=$Last_Donation_err =$UserType_err = $Preferred_Date_err =$Health_Problem_err = "";
+=$Last_Donation_err =$UserType_err = $Health_Problem_err = $Blood_Type_err =$User_ID_err= "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Validate new name
-    if(empty(trim($_POST["Name"]))){
-        $Name_err = "Enter your Name.";     
-    } elseif(strlen(trim($_POST["Name"])) < 1){
-        $Name_err = "Name must be characters.";
+    if(empty($_SESSION["User_ID"])){
+        $User_ID_err = "Please enter a User ID.";
     } else{
-        $Name = trim($_POST["Name"]);
-    }
-    
-    // Validate Validate new email
-    if(empty(trim($_POST["E_mail"]))){
-        $E_mail_err = "Please enter your E_mail.";
-    } else{
-        $E_mail = trim($_POST["E_mail"]);
-    }
-
-    if(empty(trim($_POST["Age"]))){
-        $Age_err = "Enter your Age.";     
-    }elseif($_POST["Age"] < 18){
-        $Age_err = "You Must Be At Least 18 Years Old";
-    }else{
-        $Age = trim($_POST["Age"]);
-    }
-
-    if(empty(trim($_POST["Phone"]))){
-        $Phone_err = "Enter your Phone number.";     
-    }elseif(is_numeric(trim($_POST["Phone"])) && strlen(trim($_POST["Phone"])) ==11){
-        $Phone = trim($_POST["Phone"]);
-    }else{
-        $Phone_err = "You must provide a valid Phone number.";
-    }
-
-    if(empty(trim($_POST["Location"]))){
-        $Location_err = "Enter your Location.";     
-    }else{
-        $Location = trim($_POST["Location"]);
-    }
-
-    if(empty(trim($_POST["Last_Donation"]))){
-        $Last_Donation_err = "Enter your Last Donation.";     
-    }elseif(is_numeric(trim($_POST["Last_Donation"]))){
-        $Last_Donation = trim($_POST["Last_Donation"]);
-    }else{
-        $Last_Donation_err = "Enter your Last Donation in Days.";
-    }
-
-    if(empty(trim($_POST["UserType"]))){
-        $UserType_err = "Enter your UserType.";     
-    }else{
-        $UserType = trim($_POST["UserType"]);
-    }
-
-    if(empty(trim($_POST["Preferred_Date"]))){
-        $Preferred_Date_err = "Enter your Preferred_Date.";     
-    }else{
-        $Preferred_Date = trim($_POST["Preferred_Date"]);
-    }
-
-    if(empty(trim($_POST["Health_Problem"]))){
-        $Health_Problem_err = "Enter your Health Problem.";     
-    }else{
-        $Health_Problem = trim($_POST["Health_Problem"]);
-    }
-    // Check input errors before updating the database
-    if(empty($Name_err) && empty($E_mail_err) && empty($Age_err) && empty($Phone_err)&& empty($Location_err)&& empty($Last_Donation_err)
-    && empty($UserType_err)&& empty($Preferred_Date_err)&& empty($Health_Problem_err)){
-        // Prepare an update statement
-        $sql = "UPDATE register_user_info SET Name = ?,E_Mail= ?,Age =? ,Phone =?,Location =?,
-        Last_Donation=?,UserType=?,Preferred_Date=?,Health_Problem=? WHERE User_ID = ?";
+        // Prepare a select statement
+        $sql = "SELECT User_ID FROM register_user_info WHERE User_ID = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssississsi", $param_Name,$param_E_mail,
-            $param_Age,$param_Phone,$param_Location,$param_Last_Donation,$param_UserType,
-            $param_Preferred_Date,$param_Health_Problem ,$param_id);
+            mysqli_stmt_bind_param($stmt, "i", $param_User_ID);
             
             // Set parameters
-            $param_Name = $Name;
-            $param_E_mail = $E_mail;
-            $param_Age = $Age;
-            $param_Phone = $Phone;
-            $param_Location = $Location;
-            $param_Last_Donation = $Last_Donation;
-            $param_UserType = $UserType;
-            $param_Preferred_Date = $Preferred_Date;
-            $param_Health_Problem = $Health_Problem;
-            $param_id = $_SESSION["User_ID"];
+            $param_User_ID = $_SESSION["User_ID"];
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                // updated successfully. Destroy the session, and redirect to login page
-                session_destroy();
-                header("location: login.php");
-                exit();
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+                
+                if(mysqli_stmt_num_rows($stmt) == 1){
+                    $User_ID_err = "Good news!You are already a Donor,Your infos are stored ";
+                } else{
+                    $User_ID = $_SESSION["User_ID"];
+                }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -121,7 +51,65 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Close statement
             mysqli_stmt_close($stmt);
         }
+        
     }
+    if($UserType = 'ACCEPTOR'){
+        
+        // Prepare an insert statement
+        $sql = "UPDATE register_user_info SET UserType = ? WHERE User_ID = ?";
+         
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "si",$param_UserType,$param_User_ID);
+            $param_UserType = 'DONOR';
+            $param_User_ID = $_SESSION["User_ID"];
+            if(mysqli_stmt_execute($stmt)){
+                // updated successfully. Destroy the session, and redirect to login page
+                if(empty($Name_err) && empty($E_mail_err) && empty($Age_err) && empty($Phone_err)&& empty($Location_err)&& 
+                empty($Last_Donation_err)&& empty($UserType_err)&& empty($Health_Problem_err)){
+                    // Prepare an update statement
+                    $sql = "INSERT INTO donor_information_table (Blood_Type,User_ID,Name,Age,Last_Donation,
+                    Location,UserType,E_mail,Phone,Health_Problem) VALUES ( ?,?,?, 
+                    ?, ?,?,?, ?, ?,?)";
+                    
+                    if($stmt = mysqli_prepare($link, $sql)){
+                        // Bind variables to the prepared statement as parameters
+                        mysqli_stmt_bind_param($stmt, "sisiisssss", $param_Blood_Type, $param_User_ID,
+                        $param_Name,$param_Age,$param_Last_Donation,$param_Location,$param_UserType,$param_E_mail,
+                        $param_Phone,$param_Health_Problem);
+                        
+                        // Set parameters
+                        $param_Blood_Type = $_SESSION["Blood_Type"];
+                        $param_User_ID = $_SESSION["User_ID"];
+                        $param_Name = $_SESSION["Name"];
+                        $param_Age = $_SESSION["Age"];        
+                        $param_Last_Donation = $_SESSION["Last_Donation"];
+                        $param_Location = $_SESSION["Location"];
+                        $param_UserType = 'DONOR';
+                        $param_E_mail = $_SESSION["E_mail"];
+                        $param_Phone = $_SESSION["Phone"];
+                        $param_Health_Problem = $_SESSION["Health_Problem"];
+             
+                        mysqli_report(MYSQLI_REPORT_STRICT);
+                        // Attempt to execute the prepared statement
+                        if(mysqli_stmt_execute($stmt)){
+                            // updated successfully. Destroy the session, and redirect to login page
+                            header("location: welcome.php");
+                            exit();
+                        } else{
+                            header( "refresh:1.5;url=welcome.php" ); 
+                            echo '<h1><center><b>" Good news!You are already a Donor,Your infos are stored "</b></center></h1>';
+                            die();
+                        }
+                        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+                        // Close statement
+                        mysqli_stmt_close($stmt);
+                    }
+                }
+            }
+        }// Check input errors before updating the database
+    }
+
     
     // Close connection
     mysqli_close($link);
@@ -141,7 +129,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
     <div class="wrapper">
-        <h2>Edit User Info</h2>
+        <h2>BECOME A DONOR</h2>
         <p>Please fill out this form to Edit User Info.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
             <div class="form-group <?php echo (!empty($Name_err)) ? 'has-error' : ''; ?>">
@@ -175,20 +163,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <span class="help-block"><?php echo $Last_Donation_err; ?></span>
             </div>
             <div class="form-group <?php echo (!empty($UserType_err)) ? 'has-error' : ''; ?>">
-                 <label for="UserType">Choose UserType:</label>
+                 <label for="UserType">UserType:</label>
                  <select id="UserType" name="UserType">
-                 <option value="ACCEPTOR">ACCEPTOR</option>
                  <option value="DONOR">DONOR</option>
                  </select><br><br>                                      
-                <span class="help-block"><?php echo $UserType_err; ?></span>
-            </div>  
-            <div class="form-group <?php echo (!empty($Preferred_Date_err)) ? 'has-error' : ''; ?>">
-            <label>
-                 Preferred Date:
-                 <input type="date" name="Preferred_Date" 
-                  placeholder="yyyy-mm-dd" >
-                 <span class="validity"></span>
-            </label>   
+                <span class="help"><?php echo 'DONOR'; ?></span>
             </div>  
             <div class="form-group <?php echo (!empty($Health_Problem_err)) ? 'has-error' : ''; ?>">
                 <label>Health Problem</label>

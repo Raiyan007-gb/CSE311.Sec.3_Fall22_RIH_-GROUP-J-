@@ -148,7 +148,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Set parameters
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
-            
+            $_SESSION["User_ID"] = $User_ID;
+            $_SESSION["username"] = $username;                            
+            $_SESSION["Name"] = $Name;  
+            $_SESSION["Blood_Type"] = $Blood_Type; 
+            $_SESSION["Age"] = $Age;   
+            $_SESSION["Last_Donation"] = $Last_Donation;
+            $_SESSION["Location"] = $Location;
+            $_SESSION["UserType"] = $UserType;
+            $_SESSION["E_mail"] = $E_mail;     
+            $_SESSION["Phone"] = $Phone;
+            $_SESSION["Health_Problem"] = $Health_Problem; 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
