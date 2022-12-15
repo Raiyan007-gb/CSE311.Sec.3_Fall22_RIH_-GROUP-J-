@@ -92,15 +92,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
              
                         mysqli_report(MYSQLI_REPORT_STRICT);
                         // Attempt to execute the prepared statement
-                        if(mysqli_stmt_execute($stmt)){
+                        if((($param_Last_Donation) < 56 )){
                             // updated successfully. Destroy the session, and redirect to login page
-                            header("location: welcome.php");
+                            header( "refresh:3;url=welcome.php" ); 
+                            echo '<h1><center><b>" You are not eligble to donate your blood yet </b> <br>
+                                                   <b>redireacting you in 3..2...1 Seconds!"</b></center></h1>';
                             exit();
-                        } else{
-                            header( "refresh:1.5;url=welcome.php" ); 
-                            echo '<h1><center><b>" Good news!You are already a Donor,Your infos are stored "</b></center></h1>';
-                            die();
-                        }
+                            
+                        }else{
+                            if(mysqli_stmt_execute($stmt)){
+                                 // updated successfully. Destroy the session, and redirect to login page
+                                header("location: welcome.php");
+                                exit();
+                            }else{
+                                  header( "refresh:1.5;url=welcome.php" ); 
+                                  echo $param_Last_Donation;
+                                  echo'<h1><center><b>"Good news!You are already a Donor,Your infos are stored "</b></center></h1>';
+                                  die();
+                            }
+                        }   
                         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                         // Close statement
                         mysqli_stmt_close($stmt);
@@ -167,7 +177,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                  <select id="UserType" name="UserType">
                  <option value="DONOR">DONOR</option>
                  </select><br><br>                                      
-                <span class="help"><?php echo 'DONOR'; ?></span>
             </div>  
             <div class="form-group <?php echo (!empty($Health_Problem_err)) ? 'has-error' : ''; ?>">
                 <label>Health Problem</label>

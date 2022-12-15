@@ -97,14 +97,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
           <div class="dropdown">
             <button class="dropbtn">FIND's DONOR</button>
            <div class="dropdown-content">
-                <a href="AB+.php">AB+</a>
-                <a href="AB-.php">AB-</a>
-                <a href="A+.php">A+</a>
-                <a href="A-.php">A-</a>
-                <a href="B+.php">B+</a>
-                <a href="B-.php">B-</a>
-                <a href="O+.php">O+</a>
-                <a href="O-.php">O-</a>
+                <a href="AB+.php">AB+ (AB POSITIVE)</a>
+                <a href="AB-.php">AB- (AB NEGATIVE)</a>
+                <a href="A+.php">A+ (A POSITIVE)</a>
+                <a href="A-.php">A- (A NEGATIVE)</a>
+                <a href="B+.php">B+ (B POSITIVE)</a>
+                <a href="B-.php">B- (B NEGATIVE)</a>
+                <a href="O+.php">O+ (O POSITIVE)</a>
+                <a href="O-.php">O- (O NEGATIVE)</a>
            </div>
           </div>
     <div class="center">
