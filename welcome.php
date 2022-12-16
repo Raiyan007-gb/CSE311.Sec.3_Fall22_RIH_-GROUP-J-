@@ -3,7 +3,7 @@
 session_start();
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+    header("location: welcome.php");
     exit;
 }
 ?>
@@ -28,8 +28,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a>
         <a href="edit_user_info.php" class="btn btn-warning">EDIT YOUR INFORMATION</a>
         <a href="become_a_donor.php" class="btn btn-info">BE A DONOR</a>
+        <a href="blood_request_user.php" class="btn btn-warning">BLOOD REQUEST FROM USER</a>
+        <a href="send_request.php" class="btn btn-warning">SEND REQUEST</a>
+        <a href=" delete_blood_request_user.php" class="btn btn-danger">DELETE REQUEST</a>
+       
         <a href="see_user_information.php" class="btn btn-warning">SEE OWN INFORMATION</a>
         <a href="delete_user_data_confirmation.php" class="btn btn-danger">Delete your Profile</a>
+
     </p>
     <div class="center">
                 
