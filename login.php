@@ -127,10 +127,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
+                <a href="pass_req_wit_uid.php" class="btn btn-danger">RESET PASS</a>
             </div>
             <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
-            <p>Login as Blood Bank <a href="blood_bank_login.php">Login here</a>.</p>
-            <p>Login as ADMIN <a href="admin_login.php">Login Now!!</a>.</p>
+            <p>Login as <a href="blood_bank_login.php">Blood Bank </a>.</p>
+            <p>Login as <a href="admin_login.php">ADMIN </a>.</p>
         </form>
     </div>    
 </body>

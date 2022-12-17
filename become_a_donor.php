@@ -106,7 +106,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 exit();
                             }else{
                                   header( "refresh:1.5;url=welcome.php" ); 
-                                  echo $param_Last_Donation;
                                   echo'<h1><center><b>"Good news!You are already a Donor,Your infos are stored "</b></center></h1>';
                                   die();
                             }

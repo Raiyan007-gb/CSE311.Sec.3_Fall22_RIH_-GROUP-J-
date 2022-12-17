@@ -117,8 +117,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
             <p>Don't have an account? <a href="register_blood_bank.php">Register as Blood Bank</a>.</p>
-            <p>Login as User <a href="login.php">Go to Login page</a>.</p>
-            <p>Login as ADMIN <a href="admin_login.php">Login Now!!</a>.</p>
+            <p>Go to <a href="login.php">USER</a> Login page</p>
+            <p>Login as <a href="admin_login.php">ADMIN </a>.</p>
         </form>
     </div>    
 </body>

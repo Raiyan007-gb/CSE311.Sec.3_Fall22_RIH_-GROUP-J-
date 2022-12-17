@@ -4,18 +4,24 @@ session_start();
  
 // Check if the user is logged in, otherwise redirect to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+    header("location: welcome_admin.php");
     exit;
 }
- 
+
+$mysqli = new mysqli("localhost","root","my_password","bddbms");
 // Include config file
 require_once "connection.php";
- 
+
+
 // Define variables and initialize with empty values
-$new_password = $confirm_password = "";
-$new_password_err = $confirm_password_err = "";
- 
+$id = $new_password = $confirm_password = "";
+$id_err = $new_password_err = $confirm_password_err = "";
+
 // Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "GET"){
+    
+    $id = (urldecode($_GET['id']));
+}
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Validate new password
@@ -26,7 +32,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $new_password = trim($_POST["new_password"]);
     }
-    
+
     // Validate confirm password
     if(empty(trim($_POST["confirm_password"]))){
         $confirm_password_err = "Please confirm the password.";
@@ -36,33 +42,32 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $confirm_password_err = "Password did not match.";
         }
     }
-        
+    if(empty(trim($_POST["User_ID"]))){
+        $User_ID_err = "Enter your User_ID.";     
+    }elseif(is_numeric(trim($_POST["User_ID"]))){
+        $User_ID = trim($_POST["User_ID"]);
+    }else{
+        $User_ID_err = "Please enter a valid USER ID <br>
+                        AS EXAMPLE 2013130";
+    }
     // Check input errors before updating the database
     if(empty($new_password_err) && empty($confirm_password_err)){
         // Prepare an update statement
-        $sql = "UPDATE register_user_info SET Password = ? WHERE User_ID = ?";
         
-        if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "si", $param_password, $param_id);
-            
-            // Set parameters
-            $param_password = password_hash($new_password, PASSWORD_DEFAULT);
-            $param_id = $_SESSION["User_ID"];
-            
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                // Password updated successfully. Destroy the session, and redirect to login page
-                session_destroy();
-                header("location: login.php");
-                exit();
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
-
-            // Close statement
-            mysqli_stmt_close($stmt);
-        }
+        $sql = "UPDATE register_user_info SET Password = ? WHERE User_ID = ? ";
+        $stmt = $mysqli->prepare($sql);
+        $stmt -> bind_param("si",$param_password, $User_ID); 
+        $param_password = password_hash($new_password, PASSWORD_DEFAULT);
+        if($stmt -> execute()){
+            // updated successfully. Destroy the session, and redirect to login page
+           header( "refresh:2;url=welcome_admin.php" ); 
+           echo '<h1><center><b>"CHANGED USER PASSWORD SUCESSFULLY"</b>
+           <br>
+           redirecting you to home page in ...2...1 Seconds!!</center></h1>';
+       }else{
+             header( "refresh:2;welcome_admin.php" ); 
+             echo "";
+       }
     }
     
     // Close connection
@@ -83,9 +88,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
     <div class="wrapper">
-        <h2>Reset Password</h2>
+        <h2>Reset Password <?php echo '<br> for ';echo htmlspecialchars($id);?></h2>
         <p>Please fill out this form to reset your password.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
+        <div class="form-group <?php echo (!empty($User_ID_err)) ? 'has-error' : ''; ?>">
+                <label>USER ID</label>
+                <input type="number" name="User_ID" class="form-control" value="<?php echo $id; ?>">
+                <span class="help-block"><?php echo $id_err; ?></span>
+            </div>
             <div class="form-group <?php echo (!empty($new_password_err)) ? 'has-error' : ''; ?>">
                 <label>New Password</label>
                 <input type="password" name="new_password" class="form-control" value="<?php echo $new_password; ?>">
@@ -98,7 +108,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
-                <a class="btn btn-link" href="welcome.php">Cancel</a>
+                <a class="btn btn-link" href="welcome_admin.php">Cancel</a>
             </div>
         </form>
     </div>    
