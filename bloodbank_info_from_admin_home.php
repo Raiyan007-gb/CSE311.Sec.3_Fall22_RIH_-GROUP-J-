@@ -28,14 +28,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <t>
             <th> ID </th>
             <th> Name</th>
-            <th> Security_code</th>
+            <th> Security code</th>
             <th> Contact</th>
             <th> E-mail</th>
             <th> Location</th>
             <th> Storage_capacity</th>
             <th> Facilities</th>
-            <th> Verification</th>
+            <th> VERIFIED?</th>
             <th> DELETE BLOOD BANK ACCOUNT?</th>
+            <th> Verification</th>
             </t>
             <?php 
                    while($row = mysqli_fetch_assoc($get_data)){
@@ -50,6 +51,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td> '.$row['facilities'].'</td>
                     <td> '.$row['Verification'].'</td>
                     <td> FOR ID <a href="delete_bb_data_frm_admin.php?id='.urlencode($row['user_id']).'" target="_blank">'.$row['user_id'].'</a> </td>
+                    <td> FOR ID <a href="verification_blood_bank.php?id='.urlencode($row['user_id']).'" target="_blank">'.$row['user_id'].'</a> </td>
                     </tr>';
                   }
             ?>

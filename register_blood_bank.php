@@ -221,11 +221,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <span class="help-block"><?php echo $facilities_err; ?></span>
             </div> 
             
-            <label for="Verification">Declair:</label>
+            <div>
+                <label for="Verification">Declair:</label>
                   <select id="Verification" name="Verification">
                   <option value="Not Verified">Not Verified</option>
                   </select><br><br>                                      
-                  </div>
+            </div>
          
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
