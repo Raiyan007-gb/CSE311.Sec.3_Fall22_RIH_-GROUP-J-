@@ -4,36 +4,37 @@ $mysqli = new mysqli("localhost","root","","bddbms");
 require_once "connection.php";
  
 // Define variables and initialize with null string
-$User_ID = "";
-$User_ID_err = "";
+$user_id = "";
+$user_id_err = "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
-    if(empty(trim($_POST["User_ID"]))){
-        $User_ID_err = "Enter your User ID.";     
-    }elseif(is_numeric(trim($_POST["User_ID"]))){
-        $User_ID = trim($_POST["User_ID"]);
+    if(empty(trim($_POST["user_id"]))){
+        $user_id_err = "Enter your User ID.";     
+    }elseif(is_numeric(trim($_POST["user_id"]))){
+        $user_id = trim($_POST["user_id"]);
     }else{
-        $User_ID_err = "Please enter a valid USER ID <br>
+        $user_id_err = "Please enter a valid USER ID <br>
                         AS EXAMPLE 2013130";
     }
 
     // Check input errors before inserting in database
-    if(empty($User_ID_err)){
+    if(empty($user_id_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO pass_req_wit_uid (User_ID) VALUES ( ?)";
-        $data = "INSERT INTO user_pass_reset_request (User_ID,Username,Name,E_mail,Contact,UserType) 
-                 SELECT User_ID,Username,Name,E_mail,Phone,UserType	
-                 FROM register_user_info
-                 WHERE User_ID =ANY (SELECT User_ID
-                                     FROM pass_req_wit_uid
-                                     WHERE User_ID = ?)";
-        $dataCheck = "SELECT User_ID FROM register_user_info WHERE User_ID = ?";       
+        $sql = "INSERT INTO pass_req_wit_bbuid (user_id) VALUES ( ?)";
+        $data = "INSERT INTO blood_bank_pass_reset_request (user_id,Name,Security_code,Contact,Email,Location,Storage_capacity,Verification) 
+        SELECT user_id,Name,Security_code,Contact,Email,Location,
+        Storage_capacity,Verification
+        FROM blood_bank_info
+        WHERE user_id =ANY (SELECT user_id
+                            FROM pass_req_wit_bbuid
+                            WHERE User_ID = ?)";
+        $dataCheck = "SELECT user_id FROM blood_bank_info WHERE user_id = ?";       
                 
                 $stmt = $mysqli->prepare($dataCheck);
-                $stmt -> bind_param("i", $User_ID); 
+                $stmt -> bind_param("i", $user_id); 
 
 
 
@@ -43,7 +44,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     // updated successfully. Destroy the session, and redirect to login page
                     if(mysqli_stmt_num_rows($stmt) == 1){
                         $stmt = $mysqli->prepare($sql);
-                $stmt -> bind_param("i", $User_ID); 
+                $stmt -> bind_param("i", $user_id); 
 
 
                 if($stmt -> execute()){
@@ -61,21 +62,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                    
                }
                $stmt = $mysqli->prepare($data);
-               $stmt -> bind_param("i", $User_ID); 
+               $stmt -> bind_param("i", $user_id); 
               
 
                if($stmt -> execute()){
                    // updated successfully. Destroy the session, and redirect to login page
-                  header( "refresh:2;url=login.php" ); 
+                  header( "refresh:2;url=blood_bank_login.php" ); 
                   echo "";
               }else{
-                    header( "refresh:2;url=login.php" ); 
+                    header( "refresh:2;url=blood_bank_login.php" ); 
                     echo "";
               }
 
 
                     }else{
-                        header( "refresh:2;url=login.php" ); 
+                        header( "refresh:2;url=blood_bank_login.php" ); 
                         echo'<h1><center><b style="color:red">"User ID not found which has been provided"</b>
                         <br>
                         <b style="color:red">redirecting you to login page in ..2...1 Seconds!!</b></center></h1>';
@@ -114,10 +115,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <h2>PASSWORD RECOVERY</h2>
         <p>Please provide valid User ID so Admin can aprove you password recovery</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
-            <div class="form-group <?php echo (!empty($User_ID_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group <?php echo (!empty($user_id_err)) ? 'has-error' : ''; ?>">
                 <label>USER ID</label>
-                <input type="number" name="User_ID" class="form-control" value="<?php echo $User_ID; ?>">
-                <span class="help-block"><?php echo $User_ID_err; ?></span>
+                <input type="number" name="user_id" class="form-control" value="<?php echo $user_id; ?>">
+                <span class="help-block"><?php echo $user_id_err; ?></span>
             </div>
 
             <div class="form-group">

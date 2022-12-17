@@ -72,11 +72,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     if(empty(trim($_POST["Security_code"]))){
-        $Security_code_err = "Enter the Security_code.";     
-    }elseif($_POST["Security_code"] < 10){
-        $Security_code_err = "you must enter a valid Security_code";
-    }else{
+        $Security_code_err = "Enter the Security code.";     
+    }elseif(is_numeric(trim($_POST["Security_code"])) && strlen(trim($_POST["Security_code"])) ==10){
         $Security_code = trim($_POST["Security_code"]);
+    }else{
+        $Security_code_err = "you must enter a valid Security code";
     }
 
     if(empty(trim($_POST["Contact"]))){
@@ -221,13 +221,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <span class="help-block"><?php echo $facilities_err; ?></span>
             </div> 
             
-            <div class="form-group <?php echo (!empty($Verification_err)) ? 'has-error' : ''; ?>"> 
-                 <label for="Verification">Declair:</label>
-                 <select id="Verification" name="Verification">
-                 <option value="Not Verified">Not Verified</option>
-                 <option value="Verified">Verified</option>
-                 </select><br><br>                                      
-            </div>  
+            <label for="Verification">Declair:</label>
+                  <select id="Verification" name="Verification">
+                  <option value="Not Verified">Not Verified</option>
+                  </select><br><br>                                      
+                  </div>
+         
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-default" value="Reset">

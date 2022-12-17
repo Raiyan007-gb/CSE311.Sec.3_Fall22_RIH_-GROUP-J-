@@ -8,8 +8,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 } 
   $id = urldecode($_GET['id']);
   require "connection.php";
-  $sql ="DELETE pass_req_wit_uid , user_pass_reset_request FROM pass_req_wit_uid  INNER JOIN user_pass_reset_request  
-  WHERE pass_req_wit_uid.User_ID = user_pass_reset_request.User_ID and pass_req_wit_uid .User_ID = $id";
+  $sql ="DELETE pass_req_wit_bbuid , blood_bank_pass_reset_request 
+  FROM pass_req_wit_bbuid INNER JOIN blood_bank_pass_reset_request  
+  WHERE pass_req_wit_bbuid.user_id = blood_bank_pass_reset_request.user_id and pass_req_wit_bbuid.user_id = $id";
   if ($link->query($sql) === TRUE) {
     echo "";
   } else {

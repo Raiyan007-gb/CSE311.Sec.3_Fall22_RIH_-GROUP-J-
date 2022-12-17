@@ -28,6 +28,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <a href="blood_bank_logout.php" class="btn btn-danger">Sign Out of Your Account</a>
         <a href="edit_blood_bank_info.php" class="btn btn-warning">Edit Information</a>
         <a href="see_blood_bank_information.php" class="btn btn-warning">Profile Info</a>
+        <a href="delete_blood_bank_data_confirmation.php" class="btn btn-danger">Delete your Profile</a>
     </p>
     <div class="center">
 

@@ -42,21 +42,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $confirm_password_err = "Password did not match.";
         }
     }
-    if(empty(trim($_POST["User_ID"]))){
-        $User_ID_err = "Enter your User ID.";     
-    }elseif(is_numeric(trim($_POST["User_ID"]))){
-        $User_ID = trim($_POST["User_ID"]);
+    if(empty(trim($_POST["user_id"]))){
+        $user_id_err = "Enter your User ID.";     
+    }elseif(is_numeric(trim($_POST["user_id"]))){
+        $user_id = trim($_POST["user_id"]);
     }else{
-        $User_ID_err = "Please enter a valid USER ID <br>
+        $user_id_err = "Please enter a valid USER ID <br>
                         AS EXAMPLE 2013130";
     }
     // Check input errors before updating the database
     if(empty($new_password_err) && empty($confirm_password_err)){
         // Prepare an update statement
         
-        $sql = "UPDATE register_user_info SET Password = ? WHERE User_ID = ? ";
+        $sql = "UPDATE blood_bank_info SET Bpassword = ? WHERE user_id = ? ";
         $stmt = $mysqli->prepare($sql);
-        $stmt -> bind_param("si",$param_password, $User_ID); 
+        $stmt -> bind_param("si",$param_password, $user_id); 
         $param_password = password_hash($new_password, PASSWORD_DEFAULT);
         if($stmt -> execute()){
             // updated successfully. Destroy the session, and redirect to login page
@@ -91,14 +91,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <h2>Reset Password <?php echo '<br> for ';echo htmlspecialchars($id);?></h2>
         <p>Please fill out this form to reset your password.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
-        <div class="form-group <?php echo (!empty($User_ID_err)) ? 'has-error' : ''; ?>">
-                <label>USER ID</label>
-                <input type="number" name="User_ID" class="form-control" value="<?php echo $id; ?>">
+        <div class="form-group <?php echo (!empty($user_id_err)) ? 'has-error' : ''; ?>">
+                <label>BLOOD BANK ID</label>
+                <input type="number" name="user_id" class="form-control" value="<?php echo $id; ?>">
                 <span class="help-block"><?php echo $id_err; ?></span>
             </div>
             <div class="form-group <?php echo (!empty($new_password_err)) ? 'has-error' : ''; ?>">
                 <label>New Password</label>
-                <input type="password" name="new_password" class="form-control" value="<?php echo $new_password; ?>">
+                <input type="password" name="new_password" class="form-control" value="<?php echo "$new_password"; ?>">
                 <span class="help-block"><?php echo $new_password_err; ?></span>
             </div>
             <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">

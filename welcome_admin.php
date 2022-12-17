@@ -30,6 +30,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </p>
     <div class="center">
     <a href="user_pass_reset_request.php" class="btn btn-danger">PASSWORD RECOVERY FOR USER</a>
+    <a href="blood_bank_pass_reset_request.php" class="btn btn-danger">PASSWORD RECOVERY FOR BLOOD BANK</a>
+    <a href="public_info_from_admin_home.php" class="btn btn-info">PUBLIC INFORMATION</a>
+    <a href="bloodbank_info_from_admin_home.php" class="btn btn-info">BLOOD BANK INFORMATION</a>
     </div>
 </body>
 </html>

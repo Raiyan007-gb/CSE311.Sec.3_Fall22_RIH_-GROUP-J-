@@ -115,6 +115,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
+                <a href="pass_req_wit_bbuid.php" class="btn btn-danger">RESET PASS</a>
             </div>
             <p>Don't have an account? <a href="register_blood_bank.php">Register as Blood Bank</a>.</p>
             <p>Go to <a href="login.php">USER</a> Login page</p>
