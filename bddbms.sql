@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2022 at 11:54 AM
+-- Generation Time: Dec 20, 2022 at 11:34 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -73,7 +73,7 @@ INSERT INTO `blood_bank_info` (`user_id`, `Bpassword`, `Name`, `Security_code`, 
 (1100126, '$2y$10$rUFeYTMvICp2qGxsmnEfO.WQsZ4dvPzMe1/hu4xTnsJQjmG2ss9Lq', 'BLOODBANK4', '1234567890', '01930679928', 'rashed2980@yahoo.com', 'Khulna', 45, 'We have facilities', 'Verified'),
 (1100127, '$2y$10$8HTXo3b5aR9WUF8ssYN/0.RXH9aLF9jQSdeiLbrhN5YMfRv/2.Lzi', 'BLOODBANK5', '123456789', '01856659345', 'raiyan2980@yahoo.com', 'Dhaka,Bangladesh', 56, 'Various', 'Verified'),
 (1100130, '$2y$10$8HTXo3b5aR9WUF8ssYN/0.RXH9aLF9jQSdeiLbrhN5YMfRv/2.Lzi', 'BLOODBANK5', '123456789', '01856659345', 'raiyan2980@yahoo.com', 'Dhaka,Bangladesh', 56, 'Various', 'Verified'),
-(1100131, '$2y$10$qmClbdpBT9TjGWoREq/dUeZmUv/1iyaaK3XA1paTJs6ml7Fs.nQHy', 'BLOODBANK5', '123456789', '01856659345', 'raiyan2980@yahoo.com', 'Dhaka,Bangladesh', 56, 'Various', 'Not Verified');
+(1100131, '$2y$10$qmClbdpBT9TjGWoREq/dUeZmUv/1iyaaK3XA1paTJs6ml7Fs.nQHy', 'BLOODBANK5', '123456789', '01856659345', 'raiyan2980@yahoo.com', 'Dhaka,Bangladesh', 56, 'Various', 'Verified');
 
 -- --------------------------------------------------------
 

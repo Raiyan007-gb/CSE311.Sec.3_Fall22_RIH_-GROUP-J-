@@ -118,7 +118,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="register_admin.php">Sign up now</a>.</p>
             <p>Login as User? <a href="login.php">Go to Login page</a>.</p>
         </form>
     </div>    
