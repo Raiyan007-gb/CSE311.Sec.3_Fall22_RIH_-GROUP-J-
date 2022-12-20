@@ -29,8 +29,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </head>
 <body>
     <div class="page-header">
-        <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["Name"]); ?></b>
-        <b><?php echo htmlspecialchars($_SESSION["Admin_ID"]); ?></b>. Welcome to our site.</h1>
+        <h1><b><i>ADMIN</b> <b><?php echo htmlspecialchars($_SESSION["Name"]); ?></i></b>
+        <b><?php echo htmlspecialchars($_SESSION["Admin_ID"]); ?></b></h1>
+        <h1><b><i>Welcome to our site</i></b></h1>
     </div>
     <p>
         <a href="reset-password-admin.php" class="btn btn-warning">Reset Your Password</a>
