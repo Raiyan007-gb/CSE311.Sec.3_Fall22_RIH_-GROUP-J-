@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2022 at 02:06 PM
+-- Generation Time: Dec 20, 2022 at 02:05 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -24,15 +24,15 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `volunteer`
+-- Table structure for table `blood_info`
 --
 
-CREATE TABLE `volunteer` (
-  `Name` varchar(30) NOT NULL,
-  `ID` int(7) NOT NULL,
-  `Blood_type` varchar(5) NOT NULL,
-  `Health_Problem` varchar(500) NOT NULL,
-  `Age` int(3) NOT NULL
+CREATE TABLE `blood_info` (
+  `Security_code` varchar(20) NOT NULL,
+  `Blood_type` varchar(10) NOT NULL,
+  `Storage_capacity` int(5) NOT NULL,
+  `Available_bags` int(5) NOT NULL,
+  `Bags_needed` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 COMMIT;
 

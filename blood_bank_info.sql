@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2022 at 03:12 PM
+-- Generation Time: Dec 20, 2022 at 02:05 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -45,7 +45,10 @@ CREATE TABLE `blood_bank_info` (
 --
 
 INSERT INTO `blood_bank_info` (`user_id`, `Bpassword`, `Name`, `Security_code`, `Contact`, `Email`, `Location`, `Storage_capacity`, `facilities`, `Verification`) VALUES
-(1100122, '$2y$10$7ch6bF/Es2adWly2wxuWFObkHrjPvuLPbeUkZvllUXxVGKXiO0REu', 'Bloodbank1', '1234567898', '01536129173', 'raiyan.ahmed05@northsouth.edu', 'ganderia', 567, 'yes we have', 'Verified');
+(1100126, '$2y$10$rUFeYTMvICp2qGxsmnEfO.WQsZ4dvPzMe1/hu4xTnsJQjmG2ss9Lq', 'BLOODBANK4', '1234567890', '01930679928', 'rashed2980@yahoo.com', 'Khulna', 45, 'We have facilities', 'Verified'),
+(1100127, '$2y$10$8HTXo3b5aR9WUF8ssYN/0.RXH9aLF9jQSdeiLbrhN5YMfRv/2.Lzi', 'BLOODBANK5', '123456789', '01856659345', 'raiyan2980@yahoo.com', 'Dhaka,Bangladesh', 56, 'Various', 'Verified'),
+(1100130, '$2y$10$8HTXo3b5aR9WUF8ssYN/0.RXH9aLF9jQSdeiLbrhN5YMfRv/2.Lzi', 'BLOODBANK5', '123456789', '01856659345', 'raiyan2980@yahoo.com', 'Dhaka,Bangladesh', 56, 'Various', 'Verified'),
+(1100131, '$2y$10$qmClbdpBT9TjGWoREq/dUeZmUv/1iyaaK3XA1paTJs6ml7Fs.nQHy', 'BLOODBANK5', '123456789', '01856659345', 'raiyan2980@yahoo.com', 'Dhaka,Bangladesh', 56, 'Various', 'Not Verified');
 
 --
 -- Indexes for dumped tables
@@ -65,7 +68,7 @@ ALTER TABLE `blood_bank_info`
 -- AUTO_INCREMENT for table `blood_bank_info`
 --
 ALTER TABLE `blood_bank_info`
-  MODIFY `user_id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1100124;
+  MODIFY `user_id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1100132;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

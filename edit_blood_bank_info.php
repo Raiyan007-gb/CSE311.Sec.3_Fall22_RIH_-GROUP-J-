@@ -4,7 +4,7 @@ session_start();
  
 // Check if the user is logged in, otherwise redirect to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: welcome.php");
+    header("location: welcome_blood_bank.php");
     exit;
 }
  
@@ -164,7 +164,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>  
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
-                <a class="btn btn-link" href="welcome.php">Cancel</a>
+                <a class="btn btn-link" href="welcome_blood_bank.php">Cancel</a>
             </div>
         </form>
     </div>    

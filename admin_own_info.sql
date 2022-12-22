@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2022 at 03:12 PM
+-- Generation Time: Dec 20, 2022 at 02:05 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -40,10 +40,10 @@ CREATE TABLE `admin_own_info` (
 --
 
 INSERT INTO `admin_own_info` (`Admin_ID`, `Name`, `Contact_info`, `E_Mail`, `password`) VALUES
-(2013130, 'RAIYANA', '01536129173', 'raiyan.ahmed05@northsouth.edu', '$2y$10$XOIs4tY/IH0PqNgeVZJY8Ok/Swu7J6sQcfJaUELUEFVwTrWWl9UBi'),
+(2013130, 'RAIYAN1', '01536129173', 'raiyan.ahmed05@northsouth.edu', '$2y$10$XOIs4tY/IH0PqNgeVZJY8Ok/Swu7J6sQcfJaUELUEFVwTrWWl9UBi'),
 (2013132, 'AMRITA', '01536129171', 'amrita@northsouth.edu', '$2y$10$GY1Etz9byDmDV1stuZ1Be.wpVmS.BQ.nOUNk/hMI6rdj0QUUOWkp2'),
 (2013135, 'Noushin', '01830659228', 'noushin@northsouth.edu', '$2y$10$Y.lYF3pTcZwc3j7Je4tKNuH98fQ0VG.ZfQ6GBaY.YNqfQT0rHSp0i'),
-(2013136, 'TAHSEEN', '01536129173', 'raiyan.ahmed05@northsouth.edu', '$2y$10$3hpyXNuxKfLyabF16IbcROzJPoifs2sz6igDOjTjaYyNjDPipaX.a'),
+(2013136, 'TAHSEEN', '01536129173', 'raiyan.ahmed05@northsouth.edu', '$2y$10$ZaVe3GGa23wJM0lr5v.3NevnRbRBpcN/QKhtdqR26S/QaAR/vwWzK'),
 (2013137, 'Raiyan Ahmed', '01536129173', 'raiyan.ahmed05@northsouth.edu', '$2y$10$kU7gy56Lnjca/OV5DwoXzuH3TYJzsx0aFIr9ZyyBCdepXjZLALJGe');
 
 --
