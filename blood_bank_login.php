@@ -19,10 +19,10 @@ $Name_err = $user_id_err  = $Bpassword_err = "";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Check if user_id is empty
-    if(empty(trim($_POST["user_id"]))){
-        $user_id_err  = "Please enter user_id .";
+    if(empty(trim($_POST["Name"]))){
+        $Name_err = "Please enter Name.";
     } else{
-        $user_id  = trim($_POST["user_id"]);
+        $Name = trim($_POST["Name"]);
     }
     
     // Check if password is empty
@@ -32,23 +32,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $Bpassword = trim($_POST["Bpassword"]);
     }
     // Validate credentials
-    if(empty($user_id_err) && empty($Bpassword_err)){
+    if(empty($Name_err) && empty($Bpassword_err)){
         // Prepare a select statement
-        $sql = "SELECT user_id, Name,Bpassword FROM blood_bank_info WHERE user_id = ?";
+        $sql = "SELECT user_id, Name,Bpassword FROM blood_bank_info WHERE Name = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "i", $param_user_id);
+            mysqli_stmt_bind_param($stmt, "s", $param_Name);
             
             // Set parameters
-            $param_user_id  = $user_id;
+            $param_Name  = $Name;
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Store result
                 mysqli_stmt_store_result($stmt);
                 
-                // Check if username exists, if yes then verify password
+                // Check if Name exists, if yes then verify password
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Bind result variables
                     mysqli_stmt_bind_result($stmt, $user_id,$Name, $hashed_password);
@@ -69,8 +69,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         }
                     }
                 } else{
-                    // Display an error message if username doesn't exist
-                    $$user_id_err = "No account found with that username.";
+                    // Display an error message if Name doesn't exist
+                    $Name_err = "No account found with that Name.";
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -103,10 +103,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <h2>Blood Bank Login</h2>
         <p>Please fill in your credentials to login.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group <?php echo (!empty($user_id_err)) ? 'has-error' : ''; ?>">
-                <label>USER ID</label>
-                <input type="text" name="user_id" class="form-control" value="<?php echo $user_id; ?>">
-                <span class="help-block"><?php echo $user_id_err; ?></span>
+            <div class="form-group <?php echo (!empty($Name_err)) ? 'has-error' : ''; ?>">
+                <label>Name</label>
+                <input type="text" name="Name" class="form-control" value="<?php echo $Name; ?>">
+                <span class="help-block"><?php echo $Name_err; ?></span>
             </div>    
             <div class="form-group <?php echo (!empty($Bpassword_err)) ? 'has-error' : ''; ?>">
                 <label>Password</label>
